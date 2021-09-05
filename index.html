@@ -6,12 +6,56 @@
   <title>Rock Paper Scissors</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="#" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
+  <header>
+    <h1>RPS Showdown</h1>
+    <p>
+      <span>Swords beat Spells - </span>
+      <span>Arts beat Swords - </span>
+      <span>Spells beat Arts</span>
+    </p>
+  </header>
+
+  <main>
+    <div id="player">
+      <img id="sword" class="iconImage" src="images/sword.svg">
+      <img id="arts" class="iconImage" src="images/martial-arts.svg">
+      <img id="spells" class= "iconImage" src="images/magic-spell.svg">
+    </div>
     
-    <script src="script.js"></script>
+    <div id="announcer">
+      <p id="round">Round 0</p>
+      <p id="textOutput">Get ready to strike!</p>
+
+      <div id="health">
+        <p>Your HP: 5</p>
+        <p>Enemy's HP: 5</p>
+      </div>
+    </div>
+
+    <div id="enemy">
+        <p>Enemy's move</p>
+        <img id="enemyPlay" class="iconImage" src="images/target.svg">
+    </div>
+  </main>
+
+  <nav>
+    <p>Game in progress</p>
+    <button type="button">Play again</button>
+  </nav>
+
+  <footer>
+    <p>Code by</p>
+    <a target="_blank" href="https://github.com/kru01">
+      <img src="images/githubPic.jpg">
+      <div>kru01</div>
+    </a>
+  </footer>
 </body>
 
 </html>

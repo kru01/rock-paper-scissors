@@ -1,58 +1,99 @@
-let playerScore = 0,
-    computerScore = 0;
+const round = document.getElementById("round");
 
-function game() {
-    let playerSelection;
-    let matchCounter = 0;
+let playerHP = 5,
+    enemyHP = 5,
+    match = 0;
 
-    while(true) {
-        ++matchCounter;
+function matchCounter() {
+    match += 1;
+    round.textContent = `Round ${match}`;
 
-        if(playerScore === 5 || computerScore === 5) {
-            console.log(playerScore > computerScore ? '\nYou emerge victorious' : '\nBetter luck next time!');
-            break;
+    return match;
+}
 
-        } else {
-            playerSelection = prompt('Play your hand:', 'Rock');
-            console.log(`\nMatch ${matchCounter}`);
-            console.log(`You choose ${playerSelection}`);
-            console.log(playRound(playerSelection));
-        }
+function gameResult() {
+    if(playerHP === 0 || enemyHP === 0) {
+        
     }
 }
 
 function computerPlay() {
-    const computerHand = ['Rock', 'Paper', 'Scissors'],
-        choice = computerHand[
-            Math.round(
-                Math.random() * (computerHand.length - 1)
-                )
-            ];
-    
-    console.log(`Computer plays ${choice}`);
+    const computerHand = ['Sword', 'Arts', 'Spells'];
+    const choice = computerHand[Math.round(Math.random() * (computerHand.length - 1))];
+    const choiceIcon = document.getElementById("enemyPlay");
+
+    if(choice === "Sword") {
+        choiceIcon.src = "images/sword.svg";
+    } else if(choice === "Arts") {
+        choiceIcon.src = "images/martial-arts.svg";
+    } else {
+        choiceIcon.src = "images/magic-spell.svg";
+    }
+
     return choice;
 }
 
-function playRound(playerSelection, computerSelection) {
-    playerSelection = capFirstLetter(playerSelection),
-    computerSelection = capFirstLetter(computerPlay());
+function story(playerSelection, computerSelection) {
+    const textOutput = document.getElementById("textOutput");
 
     switch(true) {
         case playerSelection === computerSelection:
-            return `It's a tie! You both played ${playerSelection}.`;
+            borderSetter("rgb(58, 188, 248)");
 
-        case playerSelection === 'Rock' && computerSelection === 'Scissors':
-        case playerSelection === 'Paper' && computerSelection === 'Rock':
-        case playerSelection === 'Scissors' && computerSelection === 'Paper':
-            playerScore = ++playerScore;
-            console.log(`Player: ${playerScore} Computer: ${computerScore}`);
-            return `Great move! ${playerSelection} beats ${computerSelection}.`;
+            if(playerSelection === "Sword")
+                textOutput.textContent = "Instinctively, you know that unless you can catch him off guard with another move. This swordplay is getting nowhere."
+            else if(playerSelection === "Arts")
+                textOutput.textContent = "You strike each other with the same speed and precision. This is futile."
+            else textOutput.textContent = "Though your spells are powerful, they are identical so their powers cancel out."
+            
+            break;
+        case playerSelection === 'Sword' && computerSelection === 'Spells':
+            textOutput.textContent = "Your anti-magic swords cut through the dark spells to the enemy's flesh. This is your win."
+            enemyHP -= 1;
+            borderSetter("rgb(6, 199, 6)");
 
+            break;
+        case playerSelection === 'Arts' && computerSelection === 'Sword':
+            textOutput.textContent = "His swift cut was deadly but it is no match for your hardened skin. You caught his blade and countered."
+            enemyHP -= 1;
+            borderSetter("rgb(6, 199, 6)");
+
+            break;
+        case playerSelection === 'Spells' && computerSelection === 'Arts':
+            textOutput.textContent = "Your spells successfully drain the enemy's life force. This is very effective."
+            enemyHP -= 1;
+            borderSetter("rgb(6, 199, 6)");
+
+            break;
+
+        case computerSelection === 'Sword' && playerSelection === 'Spells':
+            textOutput.textContent = "Your spells are nothing against those swords. With no energy after casting, you are left defenseless."
+            playerHP -= 1;
+            borderSetter("rgb(219, 9, 9)");
+
+            break;
+        case computerSelection === 'Arts' && playerSelection === 'Sword':
+            textOutput.textContent = "You are rendered useless after your blade was flung out of your hand the moment you struck his solid body."
+            playerHP -= 1;
+            borderSetter("rgb(219, 9, 9)");
+
+            break;
         default:
-            computerScore = ++computerScore;
-            console.log(`Player: ${playerScore} Computer: ${computerScore}`);
-            return `Too bad! ${computerSelection} beats ${playerSelection}`;
+            textOutput.textContent = "Your indestructible body and arts are nothing when defending against those forbidden spells."
+            playerHP -= 1;
+            borderSetter("rgb(219, 9, 9)");
+        
     }
+}
+
+function borderSetter(color) {
+    const mainBorder = document.querySelector("main");
+    const player = document.getElementById("player");
+    const enemy = document.getElementById("enemy");
+
+    mainBorder.style.border = `4px solid ${color}`;
+    player.style.borderRight = `4px solid ${color}`;
+    enemy.style.borderLeft = `4px solid ${color}`;
 }
 
 function capFirstLetter(string) {
