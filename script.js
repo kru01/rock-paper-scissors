@@ -1,20 +1,50 @@
+const weapons = document.querySelectorAll('.weapons');
 const round = document.getElementById("round");
 
 let playerHP = 5,
     enemyHP = 5,
     match = 0;
 
-function matchCounter() {
-    match += 1;
-    round.textContent = `Round ${match}`;
+game();
 
-    return match;
+function game() {
+    let playerSelection;
+
+    weapons.forEach(weapon => {
+        weapon.addEventListener('click', () => {
+            switch(weapon.id) {
+                case `sword`:
+                    playerSelection = `Sword`;
+                    weapons[0].style.filter = `var(--light-blue)`;
+                    weapons[1].style.filter = `var(--grey)`;
+                    weapons[2].style.filter = `var(--grey)`;
+                    break;
+                
+                case `arts`:
+                    playerSelection = `Arts`;
+                    weapons[0].style.filter = `var(--grey)`;
+                    weapons[1].style.filter = `var(--light-red)`;
+                    weapons[2].style.filter = `var(--grey)`;
+                    break;
+
+                default:
+                    playerSelection = `Spells`;
+                    weapons[0].style.filter = `var(--grey)`;
+                    weapons[1].style.filter = `var(--grey)`;
+                    weapons[2].style.filter = `var(--light-purple)`;
+            }
+
+            matchCounter();
+            gameProgress(playerSelection, computerPlay());
+            displayResult(playerHP, enemyHP);
+            playAgain();
+        });
+    });
 }
 
-function gameResult() {
-    if(playerHP === 0 || enemyHP === 0) {
-        
-    }
+function matchCounter() {
+    ++match;
+    round.textContent = `Round ${match}`;
 }
 
 function computerPlay() {
@@ -24,16 +54,19 @@ function computerPlay() {
 
     if(choice === "Sword") {
         choiceIcon.src = "images/sword.svg";
+        choiceIcon.style.filter = `var(--light-blue)`;
     } else if(choice === "Arts") {
         choiceIcon.src = "images/martial-arts.svg";
+        choiceIcon.style.filter = `var(--light-red)`;
     } else {
         choiceIcon.src = "images/magic-spell.svg";
+        choiceIcon.style.filter = `var(--light-purple)`;
     }
 
     return choice;
 }
 
-function story(playerSelection, computerSelection) {
+function gameProgress(playerSelection, computerSelection) {
     const textOutput = document.getElementById("textOutput");
 
     switch(true) {
@@ -82,10 +115,58 @@ function story(playerSelection, computerSelection) {
             textOutput.textContent = "Your indestructible body and arts are nothing when defending against those forbidden spells."
             playerHP -= 1;
             borderSetter("rgb(219, 9, 9)");
-        
+    }
+
+    const health = document.querySelectorAll('.health');
+    
+    health[0].textContent = `Your HP: ${playerHP}`;
+    health[1].textContent = `Enemy's HP: ${enemyHP}`;
+
+    return [playerHP, enemyHP];
+}
+
+function displayResult(playerHP, enemyHP) {
+    if(playerHP === 0 || enemyHP === 0) {
+        const story = document.getElementById('story');
+        story.classList.toggle('active');
+        toggle(); 
+
+        gameResult();
     }
 }
 
+function gameResult() {
+    const close = document.getElementById('close');
+    const endingTitle = document.getElementById('popupTitle');
+    const ending = document.getElementById('popupContent');
+    const playAgain = document.getElementById('playAgain');
+    
+    if(playerHP > enemyHP) {
+        endingTitle.textContent = `You emerged victorious!`;
+        endingTitle.style.color = '#ffc107';
+        ending.textContent = `But don't get too full of yourself, that fight was just one of many...`;
+    
+        playAgain.textContent = `Next opponent`;
+        playAgain.style.visibility = `visible`;
+        close.style.visibility = `hidden`;
+    } else {
+        endingTitle.textContent = `This is the end of the line...`;
+        endingTitle.style.color = `red`;
+        ending.textContent = `Your consciousness is fading...`;
+    
+        playAgain.textContent = `Wake up again`;
+        playAgain.style.visibility = `visible`;
+        close.style.visibility = `hidden`;
+    }
+}
+
+function playAgain() {
+    const playAgain = document.getElementById('playAgain');
+
+    playAgain.addEventListener('click', () => window.location.reload());
+}
+
+//Set border gameProgress()
 function borderSetter(color) {
     const mainBorder = document.querySelector("main");
     const player = document.getElementById("player");
@@ -96,6 +177,10 @@ function borderSetter(color) {
     enemy.style.borderLeft = `4px solid ${color}`;
 }
 
-function capFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.substr(1).toLowerCase();
+//for pop-up story box. toggle the blur.
+function toggle() {
+    const blur = document.querySelector('main');
+    blur.classList.toggle('active');
+    const popup = document.getElementById('popup');
+    popup.classList.toggle('active');
 }
