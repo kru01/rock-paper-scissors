@@ -16,28 +16,66 @@
   <header>
     <h1>RPS Showdown</h1>
     <h2>
-      <span style="filter: var(--light-blue)">Swords </span>beat<span style="filter: var(--light-purple)"> Spells </span> ||
-      <span style="filter: var(--light-red)">Arts </span>beat<span style="filter: var(--light-blue)"> Swords </span> ||
-      <span style="filter: var(--light-purple)">Spells </span>beat<span style="filter: var(--light-red)"> Arts</span>
+      <span style="filter: var(--light-blue)">Swords </span>beat<span style="filter: var(--light-purple)"> Spells |</span>
+      <span style="filter: var(--light-red)">| Arts </span>beat<span style="filter: var(--light-blue)"> Swords |</span>
+      <span style="filter: var(--light-purple)">| Spells </span>beat<span style="filter: var(--light-red)"> Arts</span>
     </h2>
   </header>
-
-  <div style="text-align: center;">
-    <img onclick="toggle()" id="story" src="images/ancient-scroll.svg">
-  </div>
+  
+  <span id="placeHolder">
+    <div class="scrollsHolder">
+      <img onclick="toggle()" id="story" src="images/ancient-scroll.svg">
+      <div class="scrollsToolTip toolTip">Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </div>
+  </span>
 
   <div id="popup">
     <div id="close" onclick="toggle()">+</div>
     <h2 id="popupTitle">Premise</h2>
-    <p id="popupContent">Without any memories, you woke up in a never-ending limbo where endless versions of yourself reside. However, there should only be one unique existence of you. Only one way to solve this, eliminate all others. Who knows, when you are the single entity left after absorbing other copies and becoming whole, maybe a miracle will happen...</p>
+    <p id="popupContent">Without any memories, you woke up in a never-ending limbo where endless versions of yourself reside. However, there should only be one unique existence of you. Only one way to solve this, eliminate all others. Maybe when you are the single entity left standing, a miracle will happen...</p>
     <button id="playAgain" type="button">Play again</button>
   </div>
 
   <main>
     <div id="player">
-      <img id="sword" class="iconImage weapons" src="images/sword.svg">
-      <img id="arts" class="iconImage weapons" src="images/martial-arts.svg">
-      <img id="spells" class= "iconImage weapons" src="images/magic-spell.svg">
+      <div id="swordHolder" class="weaponsHolder">
+        <img id="sword" class="iconImage weapons" src="images/sword.svg">
+
+        <div class="toolTip">
+          <h3 class="weaponsTitle">Swords</h3>
+          <p class="weaponsContent">
+            A pleasant nostalgia washes over you as your reflection is casted upon the blades. The anti-magic imbued swords can slash through any kinds of spells.
+            <br class="newline">It is a shame that the you over there also has the same thing in possession.
+            <br class="newline">-Represent the Scissors. Icons made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="artsHolder" class="weaponsHolder">
+        <img id="arts" class="iconImage weapons" src="images/martial-arts.svg">
+
+        <div class="toolTip">
+          <h3 class="weaponsTitle">Arts</h3>
+          <p class="weaponsContent">
+            Your body is indestructible, your abilities are unmatched. No mere weapons can graze you, but a blast to your incomplete soul would be fatal.
+            <br class="newline">It is a shame that the you over there also has the same thing in possession.
+            <br class="newline">-Represent the Rock. Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="spellsHolder" class="weaponsHolder">
+        <img id="spells" class= "iconImage weapons" src="images/magic-spell.svg">
+
+        <div class="toolTip">
+          <h3 class="weaponsTitle">Spells</h3>
+          <p class="weaponsContent">
+            Your memories remains hollow, but your knowledge pertaining to lethiferous spells is unnumbered. Despite their powers, your swords can still nullify all.
+            <br class="newline">It is a shame that the you over there also has the same thing in possession.
+            <br class="newline">-Represent the Paper. Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+          </p>
+        </div>
+      </div>
     </div>
     
     <div id="announcer">
@@ -52,25 +90,24 @@
 
     <div id="enemy">
         <p>Enemy's move</p>
-        <img id="enemyPlay" class="iconImage" src="images/target.svg">
+        <div id="enemyHolder">
+          <img id="enemyPlay" class="iconImage" src="images/target.svg">
+
+          <div class="enemyToolTip toolTip">
+            <h3 style="margin: 0; text-align: end;">"You"</h3>
+            <p class="weaponsContent">
+              One of many you. Just a glance at him makes you doubt your whole existence.
+              <br class="newline">-Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+            </p>
+          </div>
+        </div>
     </div>
   </main>
 
   <footer>
-    <!-- <div>
-      <img class="footerImage" src="images/target.svg">
-      <img class="footerImage" src="images/ancient-scroll.svg">
-      <img class="footerImage" src="images/martial-arts.svg">
-      <img class="footerImage" src="images/magic-spell.svg">
-    </div>
-
-    <div>
-      <img class="footerImage" src="images/sword.svg">
-    </div> -->
-      <p>Code by</p>
-      <a target="_blank" href="https://github.com/kru01">
-        <img id="profile" src="images/githubPic.jpg">
-        <div id="profileText">kru01</div></a>
+      <p style="margin: 5px;">Code by</p>
+      <a target="_blank" href="https://github.com/kru01"><img id="profile" src="images/githubPic.jpg"></a>
+      <a id="profileText" target="_blank" href="https://github.com/kru01">kru01</a>
   </footer>
 </body>
 
