@@ -1,0 +1,207 @@
+:root {
+    --grey: invert(32%) sepia(0%) saturate(114%) hue-rotate(134deg) brightness(91%) contrast(84%);
+    --light-blue: invert(80%) sepia(9%) saturate(559%) hue-rotate(139deg) brightness(97%) contrast(88%);
+    --light-red: invert(53%) sepia(12%) saturate(1550%) hue-rotate(300deg) brightness(89%) contrast(89%);
+    --light-purple: invert(49%) sepia(12%) saturate(1506%) hue-rotate(215deg) brightness(93%) contrast(85%);
+    --brown-yellow: invert(94%) sepia(56%) saturate(6543%) hue-rotate(322deg) brightness(94%) contrast(84%);
+}
+
+.iconImage {
+    width: 100px;
+    height: 100px;
+    filter: var(--grey);
+}
+
+body {background: #f6f6e0;}
+
+header h1 {
+    margin-block-start: 15px;
+    margin-block-end: 15px;
+    color: #ffc107;
+}
+
+header h2 {font-size: 1.2em;}
+
+/* Pop-up story box https://www.youtube.com/watch?v=snhpoxtLugU&ab_channel=OnlineTutorials */
+body #story.active,
+main.active {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+}
+
+body #popup {
+    background: #f9f3e0;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .3);
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: .5s;
+}
+
+#popup.active {
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+}
+
+#popup #close {
+    position: absolute;
+    transform: rotate(45deg);
+    right: 25px;
+    top: 0px;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+#popup #popupTitle {
+    margin-block: 0px auto;
+}
+
+#popup #popupContent {
+    text-align: justify;
+    font-family: 'Poppins', sans-serif;
+    margin-block: 11px 32px;
+}
+
+#popup #playAgain {
+    position: fixed;
+    margin: 20px auto;
+    width: 30%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #111;
+    color: #fff;
+    padding: 5px 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    visibility: hidden;
+}
+/* ^^ Pop-up story box ^^ */
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 19px;
+    margin: 0;
+}
+
+body header {
+    text-align: center;
+}
+
+body #story {
+    width: 50px;
+    height: 50px;   
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 20px auto;
+    border: 4px solid #535353;
+    border-radius: 10px;
+    height: 350px;
+}
+
+main #player {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-right: 4px solid #535353;
+}
+
+body #story:hover,
+#player img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: .4s;
+}
+
+body #story:hover {
+    filter: var(--brown-yellow);
+}
+
+#player #sword:hover {
+    filter: var(--light-blue) !important; 
+}
+
+#player #arts:hover {
+    filter: var(--light-red) !important;
+}
+
+#player #spells:hover {
+    filter: var(--light-purple) !important;
+}
+
+main #announcer {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#announcer #health {
+    display: flex;
+    align-self: normal;
+    justify-content: space-evenly;
+}
+
+main #enemy {
+    width: 15%;
+    border-left: 4px solid #535353;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FOOTER */
+
+/* .footerImage {
+    width: 25px;
+    height: 25px;
+} */
+
+body footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    font-size: 16px;
+    border-top: 4px solid #535353;
+}
+
+footer a {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+footer #profile {
+    border-radius: 50%;
+    padding-right: 5px;
+}
+
+footer #profileText:hover {
+    color: hsla(350, 63%, 72%, 0.966);
+    text-decoration: underline;
+}

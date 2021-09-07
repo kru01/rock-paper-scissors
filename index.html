@@ -3,15 +3,75 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Rock Paper Scissors</title>
+  <title>RPS Showdown</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="#" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
+  <header>
+    <h1>RPS Showdown</h1>
+    <h2>
+      <span style="filter: var(--light-blue)">Swords </span>beat<span style="filter: var(--light-purple)"> Spells </span> ||
+      <span style="filter: var(--light-red)">Arts </span>beat<span style="filter: var(--light-blue)"> Swords </span> ||
+      <span style="filter: var(--light-purple)">Spells </span>beat<span style="filter: var(--light-red)"> Arts</span>
+    </h2>
+  </header>
+
+  <div style="text-align: center;">
+    <img onclick="toggle()" id="story" src="images/ancient-scroll.svg">
+  </div>
+
+  <div id="popup">
+    <div id="close" onclick="toggle()">+</div>
+    <h2 id="popupTitle">Premise</h2>
+    <p id="popupContent">Without any memories, you woke up in a never-ending limbo where endless versions of yourself reside. However, there should only be one unique existence of you. Only one way to solve this, eliminate all others. Who knows, when you are the single entity left after absorbing other copies and becoming whole, maybe a miracle will happen...</p>
+    <button id="playAgain" type="button">Play again</button>
+  </div>
+
+  <main>
+    <div id="player">
+      <img id="sword" class="iconImage weapons" src="images/sword.svg">
+      <img id="arts" class="iconImage weapons" src="images/martial-arts.svg">
+      <img id="spells" class= "iconImage weapons" src="images/magic-spell.svg">
+    </div>
     
-    <script src="script.js"></script>
+    <div id="announcer">
+      <p id="round">Round 0</p>
+      <p id="textOutput">Get ready to strike!</p>
+
+      <div id="health">
+        <p class="health">Your HP: 5</p>
+        <p class="health">Enemy's HP: 5</p>
+      </div>
+    </div>
+
+    <div id="enemy">
+        <p>Enemy's move</p>
+        <img id="enemyPlay" class="iconImage" src="images/target.svg">
+    </div>
+  </main>
+
+  <footer>
+    <!-- <div>
+      <img class="footerImage" src="images/target.svg">
+      <img class="footerImage" src="images/ancient-scroll.svg">
+      <img class="footerImage" src="images/martial-arts.svg">
+      <img class="footerImage" src="images/magic-spell.svg">
+    </div>
+
+    <div>
+      <img class="footerImage" src="images/sword.svg">
+    </div> -->
+      <p>Code by</p>
+      <a target="_blank" href="https://github.com/kru01">
+        <img id="profile" src="images/githubPic.jpg">
+        <div id="profileText">kru01</div></a>
+  </footer>
 </body>
 
 </html>
